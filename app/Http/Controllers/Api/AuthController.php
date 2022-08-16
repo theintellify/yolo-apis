@@ -25,6 +25,18 @@ class AuthController extends Controller
             summary="Endpoint users",
             description="",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -44,15 +56,17 @@ class AuthController extends Controller
         )
     **/	
 	public function userService(Request $request)
-	{	
+	{	 
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
 
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
+       	 
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -81,6 +95,18 @@ class AuthController extends Controller
             summary="Endpoint users",
             description="Get User profile Information",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -102,11 +128,13 @@ class AuthController extends Controller
 	public function UserProfileService(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -123,6 +151,18 @@ class AuthController extends Controller
             summary="Endpoint users",
             description="Get User Notification (Retrieve)",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -144,11 +184,13 @@ class AuthController extends Controller
 	public function usersNotification(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
-		$data 			 = json_encode($jsonData);
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
+        $data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -164,6 +206,18 @@ class AuthController extends Controller
             summary="Endpoint users",
             description="Update user FCM token which is used to send message",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -185,11 +239,13 @@ class AuthController extends Controller
 	public function updateUserFcmToken(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
-		$data 			 = json_encode($jsonData);
+		//$cognito_user_id = $request->json('header')['created_by'];
+		$cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
+        $data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/users";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -206,6 +262,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Get User insurances",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -227,11 +295,13 @@ class AuthController extends Controller
 	public function insuranceType(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -249,6 +319,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Save user insurance details",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -270,11 +352,13 @@ class AuthController extends Controller
 	public function insurancev2(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -290,6 +374,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="save or update user assets",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -311,11 +407,13 @@ class AuthController extends Controller
 	public function saveInsurancev2(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -331,6 +429,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Save Assets to User Insurance Mapping",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -352,11 +462,13 @@ class AuthController extends Controller
 	public function saveAssetMapping(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
+		//$cognito_user_id = $request->json('header')['created_by'];
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -372,6 +484,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Used to get insuarance details of users",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -393,11 +517,13 @@ class AuthController extends Controller
 	public function getUserInsurance(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -413,6 +539,39 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Get basic details for user added insurances with limit",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
+            @OA\RequestBody(
+                description = "",
+                @OA\JsonContent(
+                    type = "object",
+                    example = {
+                        "_method": "POST"
+                    }
+                ),
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -434,11 +593,13 @@ class AuthController extends Controller
 	public function userInsuranceDetail(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
+		//$cognito_user_id = $request->json('header')['created_by'];
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -455,6 +616,18 @@ class AuthController extends Controller
             summary="Endpoint web",
             description="Get Admin User Insurances",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -476,11 +649,13 @@ class AuthController extends Controller
 	public function adminInsurance(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://6tjo95g76k.execute-api.us-west-2.amazonaws.com/dev/web";
+       	//$url      ="https://6tjo95g76k.execute-api.us-west-2.amazonaws.com/dev/web";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -496,6 +671,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Get User Insurance Abstract",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -517,11 +704,13 @@ class AuthController extends Controller
 	public function userInsuranceAbstract(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -537,6 +726,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Get User Insurance Coverages",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -558,11 +759,13 @@ class AuthController extends Controller
 	public function getUserInsuranceCoverage(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -579,6 +782,18 @@ class AuthController extends Controller
             summary="Endpoint asset-vault",
             description="Get Asset Vaults",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -600,11 +815,13 @@ class AuthController extends Controller
 	public function getAssetVaults(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/asset-vault";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/asset-vault";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -621,6 +838,18 @@ class AuthController extends Controller
             summary="Endpoint asset-vault",
             description="Delete Asset Vaults",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -642,11 +871,13 @@ class AuthController extends Controller
 	public function deleteAssetVaults(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/asset-vault";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/asset-vault";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -663,6 +894,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Insert Update User Insurance Coverages",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -684,11 +927,13 @@ class AuthController extends Controller
 	public function insertUpdateUserInsuranceCoverages(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -705,6 +950,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Update User Insurance Abstract",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -726,11 +983,13 @@ class AuthController extends Controller
 	public function updateUserInsuranceAbstract(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -746,6 +1005,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Insert User Insurance Abstract",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -767,11 +1038,13 @@ class AuthController extends Controller
 	public function insertUserInsuranceAbstract(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -787,6 +1060,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Update Asset Vaults",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -808,11 +1093,13 @@ class AuthController extends Controller
 	public function updateAssetVaults(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -829,6 +1116,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Get Contacts",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -850,11 +1149,13 @@ class AuthController extends Controller
 	public function getContacts(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -871,6 +1172,18 @@ class AuthController extends Controller
             summary="Endpoint Insurance-v2",
             description="Get Contacts",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -892,11 +1205,13 @@ class AuthController extends Controller
 	public function updateContacts(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/Insurance-v2";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]
@@ -912,6 +1227,18 @@ class AuthController extends Controller
             summary="Endpoint DataManager",
             description="Data Manager",
             security={{"bearerAuth":{}}},
+            @OA\Parameter(
+             name="CognitoID",
+              in="header",
+               description="CognitoID",
+                required=true,
+            ),
+            @OA\Parameter(
+             name="URL",
+              in="header",
+               description="API URL",
+                required=true,
+            ),
             @OA\RequestBody(
                 description = "",
                 @OA\JsonContent(
@@ -933,11 +1260,13 @@ class AuthController extends Controller
 	public function dataManager(Request $request)
 	{	
 		$jsonData        = $request->all();
-		$cognito_user_id = $request->json('header')['created_by'];
+		//$cognito_user_id = $request->json('header')['created_by'];
+        $cognito_user_id = $request->header('CognitoID');
+        $url             = $request->header('url');
 		$data 			 = json_encode($jsonData);
  	    $encrypt         = $this->createKeys($data,$cognito_user_id);
  	    $jsonBody        = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito_user_id)],"body"=>$encrypt];
-       	$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/DataManager";
+       	//$url      ="https://ri7b2aywq1.execute-api.us-west-2.amazonaws.com/dev/DataManager";
 		$client   = new Client();
 		$response = $client->post($url,
 			    ['body' => json_encode($jsonBody)]

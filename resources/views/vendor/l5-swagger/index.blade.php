@@ -28,7 +28,11 @@
 </head>
 
 <body style="margin-bottom: 150px !important;">
-<div id="swagger-ui"></div>
+    
+    
+<div id="swagger-ui">
+   
+</div>
 
 <script src="{{ l5_swagger_asset($documentation, 'swagger-ui-bundle.js') }}"></script>
 <script src="{{ l5_swagger_asset($documentation, 'swagger-ui-standalone-preset.js') }}"></script>

@@ -19,6 +19,20 @@
                 "summary": "Endpoint users",
                 "description": "",
                 "operationId": "c5557f32c83f3a8e491622bfea89c06c",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -55,6 +69,20 @@
                 "summary": "Endpoint users",
                 "description": "Get User profile Information",
                 "operationId": "c8f3057bc0c9f38cf5792d8830d0a30a",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -91,6 +119,20 @@
                 "summary": "Endpoint users",
                 "description": "Get User Notification (Retrieve)",
                 "operationId": "59c1d4edd20737984121dfaaa771bff5",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -127,6 +169,20 @@
                 "summary": "Endpoint users",
                 "description": "Update user FCM token which is used to send message",
                 "operationId": "b37b1af19fd37477942b19650e6b7cd9",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -163,6 +219,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Get User insurances",
                 "operationId": "8fc1dffa1b1074be48d17d9373e4bd61",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -199,6 +269,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Save user insurance details",
                 "operationId": "853c0e2a0d6f03d3c8e54c62f76e8110",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -235,6 +319,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "save or update user assets",
                 "operationId": "59a78b970f81e986e3d40b98985d3bd8",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -271,6 +369,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Save Assets to User Insurance Mapping",
                 "operationId": "f8a3c28d497e91d50a2b0c5218c8186e",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -307,6 +419,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Used to get insuarance details of users",
                 "operationId": "4d96f39f812fc161f030226fb227bd47",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -343,6 +469,32 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Get basic details for user added insurances with limit",
                 "operationId": "5af7b2708fc1b30996a5314bf3783cae",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    },
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -379,6 +531,20 @@
                 "summary": "Endpoint web",
                 "description": "Get Admin User Insurances",
                 "operationId": "abd46da4641a0845db6217b7a29ed572",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -415,6 +581,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Get User Insurance Abstract",
                 "operationId": "12ef287f8af6dcf445ad1d17490230cc",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -451,6 +631,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Get User Insurance Coverages",
                 "operationId": "6080398a5135ebc8cc6a7d45ab9922ac",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -487,6 +681,20 @@
                 "summary": "Endpoint asset-vault",
                 "description": "Get Asset Vaults",
                 "operationId": "a075ac8a33e5f2c33098250981ab8402",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -523,6 +731,20 @@
                 "summary": "Endpoint asset-vault",
                 "description": "Delete Asset Vaults",
                 "operationId": "96addabb6e98e86d2c81d80f354e2134",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -559,6 +781,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Insert Update User Insurance Coverages",
                 "operationId": "c73c8628784650240a34a434c580753e",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -595,6 +831,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Update User Insurance Abstract",
                 "operationId": "ca6f5e9e152c75e4272fd0dfb010776e",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -631,6 +881,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Insert User Insurance Abstract",
                 "operationId": "6380f7151ac4e63950f53e6137313f20",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -667,6 +931,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Update Asset Vaults",
                 "operationId": "bfb5f2795c7127a13dce86eda5d3418c",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -703,6 +981,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Get Contacts",
                 "operationId": "8ef9fc64245180cae86b487e149f8c56",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -739,6 +1031,20 @@
                 "summary": "Endpoint Insurance-v2",
                 "description": "Get Contacts",
                 "operationId": "d2f55026f5717578d3c7c71149f2ca13",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
@@ -775,6 +1081,20 @@
                 "summary": "Endpoint DataManager",
                 "description": "Data Manager",
                 "operationId": "49e824e80f57695f7d830d23bd87d519",
+                "parameters": [
+                    {
+                        "name": "CognitoID",
+                        "in": "header",
+                        "description": "CognitoID",
+                        "required": true
+                    },
+                    {
+                        "name": "URL",
+                        "in": "header",
+                        "description": "API URL",
+                        "required": true
+                    }
+                ],
                 "requestBody": {
                     "description": "",
                     "content": {
