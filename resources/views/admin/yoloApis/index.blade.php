@@ -19,11 +19,14 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-YoloApi">
                 <thead>
                     <tr>
-                        <th width="10">
+                        <!-- <th width="10">
 
-                        </th>
+                        </th> -->
                         <th>
                             {{ trans('cruds.yoloApi.fields.id') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.yoloApi.fields.api_name') }}
                         </th>
                         <th>
                             {{ trans('cruds.yoloApi.fields.enviroment') }}
@@ -37,9 +40,9 @@
                         <th>
                             {{ trans('cruds.yoloApi.fields.endpoint') }}
                         </th>
-                        <th>
+                        <!-- <th>
                             {{ trans('cruds.yoloApi.fields.cognito') }}
-                        </th>
+                        </th> -->
                        <!--  <th>
                             {{ trans('cruds.yoloApi.fields.request_body') }}
                         </th>
@@ -54,11 +57,14 @@
                 <tbody>
                     @foreach($yoloApis as $key => $yoloApi)
                         <tr data-entry-id="{{ $yoloApi->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td>
                                 {{ $yoloApi->id ?? '' }}
+                            </td>
+                            <td>
+                                {{ $yoloApi->api_name ?? '' }}
                             </td>
                             <td>
                                {{ $yoloApi->enviroment->enviroment ?? '' }}
@@ -72,9 +78,9 @@
                             <td>
                                 {{ $yoloApi->endpoint ?? '' }}
                             </td>
-                            <td>
+                           <!--  <td>
                                 {{ $yoloApi->cognito ?? '' }}
-                            </td>
+                            </td> -->
                            <!--  <td>
                                 {{ $yoloApi->request_body ?? '' }}
                             </td>

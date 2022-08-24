@@ -113,14 +113,14 @@
     <script src="{{ asset('js/main.js') }}"></script>
     <script>
         $(function() {
-  let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
+  /*let copyButtonTrans = '{{ trans('global.datatables.copy') }}'
   let csvButtonTrans = '{{ trans('global.datatables.csv') }}'
   let excelButtonTrans = '{{ trans('global.datatables.excel') }}'
   let pdfButtonTrans = '{{ trans('global.datatables.pdf') }}'
   let printButtonTrans = '{{ trans('global.datatables.print') }}'
   let colvisButtonTrans = '{{ trans('global.datatables.colvis') }}'
   let selectAllButtonTrans = '{{ trans('global.select_all') }}'
-  let selectNoneButtonTrans = '{{ trans('global.deselect_all') }}'
+  let selectNoneButtonTrans = '{{ trans('global.deselect_all') }}'*/
 
   let languages = {
     'en': 'https://cdn.datatables.net/plug-ins/1.10.19/i18n/English.json'
@@ -133,7 +133,7 @@
     },
     columnDefs: [{
         orderable: false,
-        className: 'select-checkbox',
+        //className: 'select-checkbox',
         targets: 0
     }, {
         orderable: false,
@@ -147,9 +147,9 @@
     order: [],
     scrollX: true,
     pageLength: 100,
-    dom: 'lBfrtip<"actions">',
+   // dom: 'lBfrtip<"actions">',
     buttons: [
-      {
+      /*{
         extend: 'selectAll',
         className: 'btn-primary',
         text: selectAllButtonTrans,
@@ -217,7 +217,7 @@
         exportOptions: {
           columns: ':visible'
         }
-      }
+      }*/
     ]
   });
 

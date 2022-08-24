@@ -84,11 +84,13 @@ return [
         ],
     ],
     'yoloApi' => [
-        'title'          => 'Yolo Api',
-        'title_singular' => 'Yolo Api',
+        'title'          => 'YoloH Api',
+        'title_singular' => 'YoloH Api',
         'fields'         => [
             'id'                   => 'ID',
             'id_helper'            => ' ',
+            'api_name'           => 'API Name',
+            'api_name_helper'    => ' ',
             'enviroment'           => 'Enviroment',
             'enviroment_helper'    => ' ',
             'created_at'           => 'Created at',
@@ -109,6 +111,8 @@ return [
             'url_helper'           => ' ',
             'cognito'              => 'Cognito',
             'cognito_helper'       => ' ',
+            'decrypted_body'              => 'Decrypted Body',
+            'decrypted_body_helper'       => ' ',
         ],
     ],
 ];

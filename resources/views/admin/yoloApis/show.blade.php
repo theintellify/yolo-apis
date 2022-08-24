@@ -9,9 +9,10 @@
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.yolo-apis.index') }}">
+                <a class="btn btn-primary" href="{{ route('admin.yolo-apis.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
+                <a class="btn btn-warning text-white" href="{{ URL::to('admin/yolo-apis/try',$yoloApi->id) }}">Try API</a>
             </div>
             <table class="table table-bordered table-striped">
                 <tbody>
@@ -79,10 +80,18 @@
                             {{ pretty_print($yoloApi->response_data) }}
                         </td>
                     </tr>
+                     <tr>
+                        <th>
+                            {{ trans('cruds.yoloApi.fields.decrypted_body') }}
+                        </th>
+                        <td>
+                            {{ pretty_print($yoloApi->decrypted_body) }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
-                <a class="btn btn-default" href="{{ route('admin.yolo-apis.index') }}">
+                <a class="btn btn-primary" href="{{ route('admin.yolo-apis.index') }}">
                     {{ trans('global.back_to_list') }}
                 </a>
             </div>

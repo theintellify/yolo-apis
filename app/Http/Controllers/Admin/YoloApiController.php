@@ -54,19 +54,23 @@ class YoloApiController extends Controller
         
  
         $response        = $this->getResponse($url,$api_type,$data,$cognito_user_id);
+        $responseData  =  (array) json_decode($response);
 
+        $decryptedBody = $this->decryptData($url,$api_type,$responseData['body'],$cognito_user_id); 
         
         if($response!="")
         {
             $yoloApis = new YoloApi();
+            $yoloApis->api_name       = $request->api_name;
             $yoloApis->enviroment_id  = $request->enviroment_id;
-            $yoloApis->api_type    = $request->api_type;
-            $yoloApis->url         = $request->url;
-            $yoloApis->endpoint    = $request->endpoint;
-            $yoloApis->endpoint    = $request->endpoint;
-            $yoloApis->cognito     = $request->cognito;
-            $yoloApis->request_body = $request->request_body;
-            $yoloApis->response_data = $response;
+            $yoloApis->api_type       = $request->api_type;
+            $yoloApis->url            = $request->url;
+            $yoloApis->endpoint       = $request->endpoint;
+            $yoloApis->endpoint       = $request->endpoint;
+            $yoloApis->cognito        = $request->cognito;
+            $yoloApis->request_body   = $request->request_body;
+            $yoloApis->response_data  = $response;
+            $yoloApis->decrypted_body = $decryptedBody;
             $saveResult = $yoloApis->save();
 
             return redirect()->route('admin.yolo-apis.index');
@@ -109,18 +113,23 @@ class YoloApiController extends Controller
        
         $response        = $this->getResponse($url,$api_type,$data,$cognito_user_id);
 
+        $responseData  =  (array) json_decode($response);
+
+        $decryptedBody = $this->decryptData($url,$api_type,$responseData['body'],$cognito_user_id); 
         
         if($response!="")
         {
             $yoloApis =  YoloApi::find($yoloApi->id);
+            $yoloApis->api_name       = $request->api_name;
             $yoloApis->enviroment_id  = $request->enviroment_id;
-            $yoloApis->api_type    = $request->api_type;
-            $yoloApis->url         = $request->url;
-            $yoloApis->endpoint    = $request->endpoint;
-            $yoloApis->endpoint    = $request->endpoint;
-            $yoloApis->cognito     = $request->cognito;
-            $yoloApis->request_body = $request->request_body;
-            $yoloApis->response_data = $response;
+            $yoloApis->api_type       = $request->api_type;
+            $yoloApis->url            = $request->url;
+            $yoloApis->endpoint       = $request->endpoint;
+            $yoloApis->endpoint       = $request->endpoint;
+            $yoloApis->cognito        = $request->cognito;
+            $yoloApis->request_body   = $request->request_body;
+            $yoloApis->response_data  = $response;
+            $yoloApis->decrypted_body = $decryptedBody;
             $saveResult = $yoloApis->save();
 
             return redirect()->route('admin.yolo-apis.index');
@@ -188,10 +197,12 @@ class YoloApiController extends Controller
         } 
         
  
-        $response        = $this->getResponse($url,$api_type,$data,$cognito_user_id);
-  
+        $response      = $this->getResponse($url,$api_type,$data,$cognito_user_id);
+        $responseData  =  (array) json_decode($response);
 
-        return redirect()->back()->with('data',$response)->withInput();
+        $decryptedBody = $this->decryptData($url,$api_type,$responseData['body'],$cognito_user_id);   
+        
+        return redirect()->back()->with(['data'=>$response,'decryptedBody'=>$decryptedBody])->withInput();
     }
 
 
@@ -223,5 +234,15 @@ class YoloApiController extends Controller
 
         $result = $response->getBody()->getContents();
     return $result;
+    }
+
+    public function decryptData($url,$type,$data,$cognitoId){
+        $uuidSimple = str_replace("-", "", $cognitoId);
+        $stringStr  = $uuidSimple.'@SiMBA.InSuRAnCE';
+        $mdString   = md5($stringStr);   //@SiMBA.InSuRAnCE
+        $key        = substr($mdString,0,16);
+        $iv         = substr($mdString,16);         
+        $decrypt   = openssl_decrypt($data, 'aes-128-cbc', $key,0,$iv);
+        return $decrypt;
     }
 }

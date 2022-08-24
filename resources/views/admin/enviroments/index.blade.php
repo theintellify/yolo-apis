@@ -19,9 +19,9 @@
             <table class=" table table-bordered table-striped table-hover datatable datatable-Enviroment">
                 <thead>
                     <tr>
-                        <th width="10">
+                        <!-- <th width="10">
 
-                        </th>
+                        </th> -->
                         <th>
                             {{ trans('cruds.enviroment.fields.id') }}
                         </th>
@@ -39,9 +39,9 @@
                 <tbody>
                     @foreach($enviroments as $key => $enviroment)
                         <tr data-entry-id="{{ $enviroment->id }}">
-                            <td>
+                            <!-- <td>
 
-                            </td>
+                            </td> -->
                             <td>
                                 {{ $enviroment->id ?? '' }}
                             </td>

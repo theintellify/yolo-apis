@@ -11,6 +11,17 @@
             <input type="hidden" name="id" value="{{request()->id}}">
             @csrf 
             <div class="form-group">
+                 <label class="required" for="url">{{ trans('cruds.yoloApi.fields.api_name') }}</label>
+                 <input type="text" class="form-control {{ $errors->has('api_name') ? 'is-invalid' : '' }}" placeholder="API Name" name="api_name" id="api_name" value="{{ old('api_name',$yoloApis->api_name ) }}" required  >
+                @if($errors->has('api_name'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('api_name') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.yoloApi.fields.api_name_helper') }}</span>
+            </div>
+            
+            <div class="form-group">
                 <label class="required" for="enviroment_id">{{ trans('cruds.yoloApi.fields.enviroment') }}</label>
                 <select class="form-control select2 {{ $errors->has('enviroment') ? 'is-invalid' : '' }}" name="enviroment_id" id="enviroment_id" required>
                     @foreach($enviroments as $id => $entry)
@@ -123,13 +134,23 @@
                         @endif 
                      
                 </div>
+                <label class="mt-5">Decrypted Body is as below</label>
+                <div class="alert alert-warning text-bold">
+                    @if(\Session::has('decryptedBody'))
+                            <?php $decryptedBody = \Session::get('decryptedBody'); ?>
+                            <p>
+                                <?php echo pretty_print($decryptedBody); ?>
+                            </p>
+                               
+                    @endif 
+                </div>
             
        
             
 
     
     </div>
-    <?php function pretty_print($json_data)
+<?php function pretty_print($json_data)
 {
 //Initialize variable for adding space
 $space = 0;
@@ -178,20 +199,14 @@ echo str_repeat(' ', ($space*2));
 }
 echo"</pre>";
 } ?>
-    
 
 </div>
-
-
 
 @endsection
 
 @section('scripts')
 <script >
                                              
-                     
- 
-
     $("#enviroment_id").change(function(evt){
        
         var id = $(this).val();

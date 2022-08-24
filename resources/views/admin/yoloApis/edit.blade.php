@@ -11,6 +11,18 @@
             @method('PUT')
             @csrf
             <div class="form-group">
+                 <label class="required" for="url">{{ trans('cruds.yoloApi.fields.api_name') }}</label>
+                 <input type="text" class="form-control {{ $errors->has('api_name') ? 'is-invalid' : '' }}" placeholder="API Name" name="api_name" id="api_name" value="{{ old('api_name',$yoloApi->api_name ) }}" required  >
+                @if($errors->has('api_name'))
+                    <div class="invalid-feedback">
+                        {{ $errors->first('api_name') }}
+                    </div>
+                @endif
+                <span class="help-block">{{ trans('cruds.yoloApi.fields.api_name_helper') }}</span>
+            </div>
+
+            <div class="form-group">
+
                 <label class="required" for="enviroment_id">{{ trans('cruds.yoloApi.fields.enviroment') }}</label>
                 <select class="form-control select2 {{ $errors->has('enviroment') ? 'is-invalid' : '' }}" name="enviroment_id" id="enviroment_id" required>
                     @foreach($enviroments as $id => $entry)
