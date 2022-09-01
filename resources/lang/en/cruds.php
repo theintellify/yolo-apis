@@ -113,6 +113,8 @@ return [
             'cognito_helper'       => ' ',
             'decrypted_body'              => 'Decrypted Body',
             'decrypted_body_helper'       => ' ',
+            'message_name'                  => 'Message Name',
+
         ],
     ],
 ];

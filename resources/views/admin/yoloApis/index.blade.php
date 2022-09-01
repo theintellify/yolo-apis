@@ -34,8 +34,11 @@
                         <th>
                             {{ trans('cruds.yoloApi.fields.api_type') }}
                         </th>
-                        <th>
+                        <th >
                             {{ trans('cruds.yoloApi.fields.url') }}
+                        </th>
+                        <th>
+                            {{ trans('cruds.yoloApi.fields.message_name') }}
                         </th>
                         <th>
                             {{ trans('cruds.yoloApi.fields.endpoint') }}
@@ -72,8 +75,11 @@
                             <td>
                                 {{ App\Models\YoloApi::API_TYPE_SELECT[$yoloApi->api_type] ?? '' }}
                             </td>
-                            <td>
+                            <td  >
                                 {{ $yoloApi->url ?? '' }}
+                            </td>
+                            <td>
+                                {{ $yoloApi->message_name ?? '' }}
                             </td>
                             <td>
                                 {{ $yoloApi->endpoint ?? '' }}

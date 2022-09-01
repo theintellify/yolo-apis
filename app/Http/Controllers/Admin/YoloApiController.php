@@ -44,7 +44,7 @@ class YoloApiController extends Controller
         $data = json_encode($requestBody);
         $response = '';  
         $cognito_user_id       = $request->cognito;
-        
+        $messageName = $requestBody['header']->message_name;
         if($request->api_type==1){
             $api_type        = 'GET';    
         } 
@@ -54,7 +54,7 @@ class YoloApiController extends Controller
         
  
         $response        = $this->getResponse($url,$api_type,$data,$cognito_user_id);
-        $responseData  =  (array) json_decode($response);
+        $responseData    =  (array) json_decode($response);
 
         $decryptedBody = $this->decryptData($url,$api_type,$responseData['body'],$cognito_user_id); 
         
@@ -65,6 +65,7 @@ class YoloApiController extends Controller
             $yoloApis->enviroment_id  = $request->enviroment_id;
             $yoloApis->api_type       = $request->api_type;
             $yoloApis->url            = $request->url;
+            $yoloApis->message_name   = $messageName;
             $yoloApis->endpoint       = $request->endpoint;
             $yoloApis->endpoint       = $request->endpoint;
             $yoloApis->cognito        = $request->cognito;
@@ -94,13 +95,15 @@ class YoloApiController extends Controller
 
     public function update(UpdateYoloApiRequest $request, YoloApi $yoloApi)
     {
-        //$yoloApi->update($request->all());
+        
        
         $url = $request->url.''.$request->endpoint;
         
         $requestBody = (array)json_decode($request->request_body);
          
         $data = json_encode($requestBody);
+        $messageName = $requestBody['header']->message_name;
+
         $response = '';  
         $cognito_user_id       = $request->cognito;
         
@@ -110,7 +113,7 @@ class YoloApiController extends Controller
         if($request->api_type==2){
             $api_type        = 'POST';    
         } 
-       
+        
         $response        = $this->getResponse($url,$api_type,$data,$cognito_user_id);
 
         $responseData  =  (array) json_decode($response);
@@ -124,6 +127,7 @@ class YoloApiController extends Controller
             $yoloApis->enviroment_id  = $request->enviroment_id;
             $yoloApis->api_type       = $request->api_type;
             $yoloApis->url            = $request->url;
+            $yoloApis->message_name   = $messageName;
             $yoloApis->endpoint       = $request->endpoint;
             $yoloApis->endpoint       = $request->endpoint;
             $yoloApis->cognito        = $request->cognito;
