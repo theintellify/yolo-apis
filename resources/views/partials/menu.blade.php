@@ -70,10 +70,20 @@
         @can('yolo_api_access')
             <li class="c-sidebar-nav-item">
                 <a href="{{ route("admin.yolo-apis.index") }}" class="c-sidebar-nav-link {{ request()->is("admin/yolo-apis") || request()->is("admin/yolo-apis/*") ? "c-active" : "" }}">
-                    <i class="fa-fw fas fa-cogs c-sidebar-nav-icon">
+                    <i class="fa-fw fas fa fa-check-square-o c-sidebar-nav-icon">
 
                     </i>
                     {{ trans('cruds.yoloApi.title') }}
+                </a>
+            </li>
+        @endcan
+        @can('yolo_api_access')
+            <li class="c-sidebar-nav-item">
+                <a href="{{ route("admin.encrypt") }}" class="c-sidebar-nav-link {{ request()->is("admin/yolo-apis") || request()->is("admin/encrypt/*") ? "c-active" : "" }}">
+                    <i class="fa-fw fas fa-unlock-alt c-sidebar-nav-icon">
+
+                    </i>
+                    {{ trans('cruds.menu_encryption.title') }}
                 </a>
             </li>
         @endcan

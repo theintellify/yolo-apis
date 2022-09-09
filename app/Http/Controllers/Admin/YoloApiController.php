@@ -43,7 +43,7 @@ class YoloApiController extends Controller
          
         $data = json_encode($requestBody);
         $response = '';  
-        $cognito_user_id       = $request->cognito;
+        $cognito_user_id  = $request->cognito;
         $messageName = $requestBody['header']->message_name;
         if($request->api_type==1){
             $api_type        = 'GET';    
@@ -147,14 +147,34 @@ class YoloApiController extends Controller
 
         return redirect()->route('admin.yolo-apis.index');
     }
+    public function getEncrptedBody($yoloApi){
+        $requestBody = (array)json_decode($yoloApi->request_body);
+        $data = json_encode($requestBody); 
 
+        $url      = $yoloApi->url;
+        $api_type = ($yoloApi->api_type==1) ? 'GET' : 'POST';
+        $cognito  = $yoloApi->cognito;
+
+
+        $uuidSimple = str_replace("-", "", $cognito);
+        $stringStr  = $uuidSimple.'@SiMBA.InSuRAnCE';
+        $mdString   = md5($stringStr);   //@SiMBA.InSuRAnCE
+        $key        = substr($mdString,0,16);
+        $iv         = substr($mdString,16);         
+        $encrypt   = openssl_encrypt($data, 'aes-128-cbc', $key,0,$iv);
+        $jsonBody  = ["headers"=>["x-shyld-app-id"=>base64_encode($cognito)],"body"=>$encrypt];
+        return $jsonBody;
+    }
     public function show(YoloApi $yoloApi)
     {
         abort_if(Gate::denies('yolo_api_show'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
         $yoloApi->load('enviroment');
-
-        return view('admin.yoloApis.show', compact('yoloApi'));
+       
+        
+        $encrptedBody = $this->getEncrptedBody($yoloApi); 
+        
+        return view('admin.yoloApis.show', compact('yoloApi','encrptedBody'));
     }
 
     public function destroy(YoloApi $yoloApi)

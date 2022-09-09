@@ -1,5 +1,5 @@
 <?php
 
 return [
-    'site_title' => 'YoloAPI',
+    'site_title' => 'YOLOH APIs',
 ];

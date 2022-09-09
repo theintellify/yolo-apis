@@ -168,7 +168,7 @@
 
   $.extend(true, $.fn.dataTable.defaults, {
     orderCellsTop: true,
-    order: [[ 1, 'desc' ]],
+    //order: [[ 0, 'desc' ]],
     pageLength: 100,
   });
   let table = $('.datatable-YoloApi:not(.ajaxTable)').DataTable({ buttons: dtButtons })

@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-
+use Illuminate\Http\Request;
 class LoginController extends Controller
 {
     /*
@@ -35,6 +35,27 @@ class LoginController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest')->except('logout');
+        $this->middleware('guest')->except('logout','authenticated');
+      
     }
+
+    protected function authenticated(Request $request, $user)
+    {   
+        $name = \Auth::user()->name;
+        $email = \Auth::user()->email;     
+
+        $otp = random_int(100000, 999999);
+        $user = \Auth::user();
+        $user->otp = (int)$otp;
+        $user->save();
+        $data = array('name'=>$name,'email'=>$email,'otp'=>$otp);
+        \Mail::send('mail', ['data'=>$data], function($message) use($email) {
+             $message->to($email, 'YoloH API OTP')->subject
+                ('YoloH API OTP');
+             $message->from('support@theintellify.net','YoloH API');
+         }); 
+         
+         return redirect()->route('otp');
+    }
+   
 }

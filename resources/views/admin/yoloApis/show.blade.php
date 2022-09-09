@@ -6,6 +6,8 @@
         {{ trans('global.show') }} {{ trans('cruds.yoloApi.title') }}
     </div>
 
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet"/>
     <div class="card-body">
         <div class="form-group">
             <div class="form-group">
@@ -17,7 +19,7 @@
             <table class="table table-bordered table-striped">
                 <tbody>
                     <tr>
-                        <th>
+                        <th style="width: 200px;">
                             {{ trans('cruds.yoloApi.fields.id') }}
                         </th>
                         <td>
@@ -65,11 +67,25 @@
                         </td>
                     </tr>
                     <tr>
-                        <th>
+                        <th >
                             {{ trans('cruds.yoloApi.fields.request_body') }}
                         </th>
-                        <td>
-                            {{ pretty_print($yoloApi->request_body) }}
+
+                        <td> <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#request_body">Click to view</button>    
+                            <div id="request_body" class="accordion-collapse collapse" >{{ pretty_print($yoloApi->request_body) }}</div>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th >
+                            {{ trans('cruds.yoloApi.fields.request_encrypted_body') }}
+                        </th>
+
+                        <td> <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#request_encrypted_body">Click to view</button>    
+                            <div id="request_encrypted_body" class="accordion-collapse collapse" style="width: 1050px;">
+                                 
+                                      {{ pretty_print(json_encode($encrptedBody)) }}
+                                  
+                            </div>
                         </td>
                     </tr>
                     <tr>
@@ -77,7 +93,10 @@
                             {{ trans('cruds.yoloApi.fields.response_data') }}
                         </th>
                         <td>
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#response_data">Click to view</button>
+                            <div id="response_data" class="accordion-collapse collapse" style="width: 950px;"> 
                             {{ pretty_print($yoloApi->response_data) }}
+                            </div>
                         </td>
                     </tr>
                      <tr>
@@ -85,7 +104,10 @@
                             {{ trans('cruds.yoloApi.fields.decrypted_body') }}
                         </th>
                         <td>
-                            {{ pretty_print($yoloApi->decrypted_body) }}
+                            <button type="button" class="accordion-button collapsed" data-bs-toggle="collapse" data-bs-target="#decrypted_body">Click to view</button>
+                            <div id="decrypted_body" class="accordion-collapse collapse" >  
+                                {{ pretty_print($yoloApi->decrypted_body) }}
+                            </div>
                         </td>
                     </tr>
                 </tbody>
@@ -98,6 +120,7 @@
         </div>
     </div>
 </div>
+ 
 
  <?php function pretty_print($json_data)
 {

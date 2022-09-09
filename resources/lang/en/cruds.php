@@ -103,6 +103,8 @@ return [
             'api_type_helper'      => ' ',
             'request_body'         => 'Request Body',
             'request_body_helper'  => ' ',
+            'request_encrypted_body'         => 'Requested Encrypted Body',
+            'request_encrypted_body_helper'  => ' ',
             'response_data'        => 'Response Data',
             'response_data_helper' => ' ',
             'endpoint'             => 'Endpoint',
@@ -117,4 +119,16 @@ return [
 
         ],
     ],
+    'menu_encryption'=>[
+        'title'          => 'Encryption / Descryption',
+        'title_singular' => 'Encryption / Descryption',
+        'fields'         => [
+            'cognito_id'                   => 'Cognito ID',
+            'cognito_id_helper'            => 'Cognito ID is required for Encryption / Decryption ',
+            /*'select_encrypted_decrypt'     => 'Select Type',
+            'select_encrypted_decrypt_helper'            => 'Encryption / Decryption  is required for Encryption / Decryption ',*/
+            'request_body'     => 'Body',
+            'request_body_helper'            => ' ',
+        ]    
+    ]
 ];
