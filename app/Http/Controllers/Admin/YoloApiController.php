@@ -16,11 +16,18 @@ use GuzzleHttp\RequestOptions;
 use GuzzleHttp\Client;
 class YoloApiController extends Controller
 {
-    public function index()
+    public function index(Request $request)
     {
         abort_if(Gate::denies('yolo_api_access'), Response::HTTP_FORBIDDEN, '403 Forbidden');
 
-        $yoloApis = YoloApi::with(['enviroment'])->get();
+
+        if($request->archive==1){
+
+            $yoloApis = YoloApi::with(['enviroment'])->where('api_status','=','1')->get();    
+        } else {
+            $yoloApis = YoloApi::with(['enviroment'])->get();
+        }
+        
  
         return view('admin.yoloApis.index', compact('yoloApis'));
     }
@@ -36,6 +43,7 @@ class YoloApiController extends Controller
 
     public function store(StoreYoloApiRequest $request)
     {
+
         //$yoloApi = YoloApi::create($request->all());
         $url = $request->url.''.$request->endpoint;
         
@@ -71,6 +79,9 @@ class YoloApiController extends Controller
             $yoloApis->cognito        = $request->cognito;
             $yoloApis->request_body   = $request->request_body;
             $yoloApis->response_data  = $response;
+            $yoloApis->decrypted_body = $decryptedBody;
+            $yoloApis->api_status     = $request->api_status;
+            $yoloApis->api_version    = $request->api_version;
             $yoloApis->decrypted_body = $decryptedBody;
             $saveResult = $yoloApis->save();
 
@@ -133,6 +144,8 @@ class YoloApiController extends Controller
             $yoloApis->cognito        = $request->cognito;
             $yoloApis->request_body   = $request->request_body;
             $yoloApis->response_data  = $response;
+            $yoloApis->api_status     = $request->api_status;
+            $yoloApis->api_version    = $request->api_version;
             $yoloApis->decrypted_body = $decryptedBody;
             $saveResult = $yoloApis->save();
 

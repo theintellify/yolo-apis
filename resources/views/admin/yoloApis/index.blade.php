@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 @section('content')
+
+
 @can('yolo_api_create')
     <div style="margin-bottom: 10px;" class="row">
         <div class="col-lg-12">
@@ -9,12 +11,22 @@
         </div>
     </div>
 @endcan
+<style type="text/css">
+    .active {
+        background-color: #2c3647 !important;
+        border:1px solid #fff !important;
+    }
+</style>
 <div class="card">
     <div class="card-header">
         {{ trans('cruds.yoloApi.title_singular') }} {{ trans('global.list') }}
     </div>
 
     <div class="card-body">
+        <div class="row float-right">
+            <a href="{{ route('admin.yolo-apis.index') }}" class="btn btn-md btn-success {{ request()->get('archive')=='' ? 'active' : '' }} mr-2" style="color:#fff;">Active</a>
+            <a href="{{ route('admin.yolo-apis.index',['archive'=>1]) }}" class="btn btn-md btn-danger archive  mr-3 {{ request()->get('archive')==1 ? 'active' : '' }}" style="color:#fff;">Archive</a>
+        </div>
         <div class="table-responsive">
             <table class=" table table-bordered table-striped table-hover datatable datatable-YoloApi">
                 <thead>

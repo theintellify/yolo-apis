@@ -91,6 +91,24 @@
                 @endif
                 <span class="help-block">{{ trans('cruds.yoloApi.fields.request_body_helper') }}</span>
             </div>
+            <div class="row">
+                <div class="col-md-6 form-group">
+                    <label class="required" for="api_version">Version</label>
+                    <select name="api_version" class="form-control select2" required>
+                        <option value="" {{ old('api_version', null) === null ? 'selected' : '' }}>Select</option>
+                        <option value="2"  {{ (old('api_version') ? old('api_version') : $yoloApi->api_version ?? '') == 2 ? 'selected' : '' }} >MVP-2</option>
+                        <option value="3" {{ (old('api_version') ? old('api_version') : $yoloApi->api_version ?? '') == 3 ? 'selected' : '' }}>MVP-3</option>
+                    </select>
+                </div>
+                <div class="col-md-6 form-group">
+                    <label class="required" for="api_status">Status</label>
+                    <select name="api_status" class="form-control select2" required>
+                        <option value="" {{ old('api_status', null) === null ? 'selected' : '' }}>Select</option>
+                        <option value="0" {{ (old('api_status') ? old('api_status') : $yoloApi->api_status ?? '') == 0 ? 'selected' : '' }}>Active</option>
+                        <option value="1" {{ (old('api_status') ? old('api_status') : $yoloApi->api_status ?? '') == 1 ? 'selected' : '' }}>Archive</option>
+                    </select>
+                </div>    
+            </div>
             <!-- <div class="form-group">
                 <label for="response_data">{{ trans('cruds.yoloApi.fields.response_data') }}</label>
                 <textarea class="form-control {{ $errors->has('response_data') ? 'is-invalid' : '' }}" name="response_data" id="response_data">{{ old('response_data', $yoloApi->response_data) }}</textarea>

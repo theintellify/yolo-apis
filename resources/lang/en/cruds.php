@@ -115,6 +115,10 @@ return [
             'cognito_helper'       => ' ',
             'decrypted_body'              => 'Decrypted Body',
             'decrypted_body_helper'       => ' ',
+            'api_version'              => 'API Version',
+            'api_version_helper'       => ' ',
+            'api_status'              => 'API Status',
+            'api_status_helper'       => ' ',
             'message_name'                  => 'Message Name',
 
         ],

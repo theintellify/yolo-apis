@@ -110,6 +110,22 @@
                             </div>
                         </td>
                     </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.yoloApi.fields.api_version') }}
+                        </th>
+                        <td>
+                            {{ $yoloApi->api_version }}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>
+                            {{ trans('cruds.yoloApi.fields.api_status') }}
+                        </th>
+                        <td>
+                            {{ $yoloApi->api_status }}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <div class="form-group">
